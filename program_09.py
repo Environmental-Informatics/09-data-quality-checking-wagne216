@@ -152,49 +152,49 @@ if __name__ == '__main__':
     print("\nAll processing finished.....\n", DataDF.describe())
     print("\nFinal changed values counts.....\n", ReplacedValuesDF)
     
-# reimport original data:
-# define column names
-colNames = ['Date','Precip','Max Temp', 'Min Temp','Wind Speed']
-
-# open and read the file
-DataDFraw = pd.read_csv("DataQualityChecking.txt",header=None, names=colNames,  
-                     delimiter=r"\s+",parse_dates=[0])
-DataDFraw = DataDFraw.set_index('Date')
+    # reimport original data:
+    # define column names
+    colNames = ['Date','Precip','Max Temp', 'Min Temp','Wind Speed']
     
-# plot each variable as before & after: 
-# Precip
-DataDFraw['Precip'].plot(style='blue',label='original')
-DataDF['Precip'].plot(style='orange',label='filtered')
-m.legend()
-m.title('Precipiation Data')
-m.ylabel('P (mm)')
-m.show()
-# Max T
-DataDFraw['Max Temp'].plot(style='blue',label='original')
-DataDF['Max Temp'].plot(style='orange',label='filtered')
-m.legend()
-m.title('Maximum Air Temperature Data')
-m.ylabel('T_{max} °C')
-m.show()
-# Min T
-DataDFraw['Min Temp'].plot(style='blue',label='original')
-DataDF['Min Temp'].plot(style='orange',label='filtered')
-m.legend()
-m.title('Minimum Air Temperature Data')
-m.ylabel('T_{min} °C')
-m.show()
-# Wind Speed
-DataDFraw['Wind Speed'].plot(style='blue',label='original')
-DataDF['Wind Speed'].plot(style='orange',label='filtered')
-m.legend()
-m.title('Wind Speed Data')
-m.ylabel('WS (m/s)')
-m.show()
-
-
-# write filtered data to txt file: 
-DataDF.to_csv('DataQualityChecked.txt',header=None,sep=' ')
-
-# write failed check data to tab delim file: 
-ReplacedValuesDF.to_csv('FailedChecks.txt',sep='\t')
-
+    # open and read the file
+    DataDFraw = pd.read_csv("DataQualityChecking.txt",header=None, names=colNames,  
+                         delimiter=r"\s+",parse_dates=[0])
+    DataDFraw = DataDFraw.set_index('Date')
+        
+    # plot each variable as before & after: 
+    # Precip
+    DataDFraw['Precip'].plot(style='blue',label='original')
+    DataDF['Precip'].plot(style='orange',label='filtered')
+    m.legend()
+    m.title('Precipiation Data')
+    m.ylabel('P (mm)')
+    m.show()
+    # Max T
+    DataDFraw['Max Temp'].plot(style='blue',label='original')
+    DataDF['Max Temp'].plot(style='orange',label='filtered')
+    m.legend()
+    m.title('Maximum Air Temperature Data')
+    m.ylabel('T_{max} °C')
+    m.show()
+    # Min T
+    DataDFraw['Min Temp'].plot(style='blue',label='original')
+    DataDF['Min Temp'].plot(style='orange',label='filtered')
+    m.legend()
+    m.title('Minimum Air Temperature Data')
+    m.ylabel('T_{min} °C')
+    m.show()
+    # Wind Speed
+    DataDFraw['Wind Speed'].plot(style='blue',label='original')
+    DataDF['Wind Speed'].plot(style='orange',label='filtered')
+    m.legend()
+    m.title('Wind Speed Data')
+    m.ylabel('WS (m/s)')
+    m.show()
+    
+    
+    # write filtered data to txt file: 
+    DataDF.to_csv('DataQualityChecked.txt',header=None,sep=' ')
+    
+    # write failed check data to tab delim file: 
+    ReplacedValuesDF.to_csv('FailedChecks.txt',sep='\t')
+    
